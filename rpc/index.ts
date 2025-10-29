@@ -1,23 +1,28 @@
-import { RpcTarget } from 'cloudflare:workers';
+import { WorkerEntrypoint } from "cloudflare:workers";
 
 // RPC サービスの実装
-export class RpcService implements RpcTarget {
-	async add(a: number, b: number): Promise<number> {
-		return a + b;
-	}
+export class RpcService extends WorkerEntrypoint {
+  async add(a: number, b: number): Promise<number> {
+    throw new Error("error!");
+    return a + b;
+  }
 
-	async multiply(a: number, b: number): Promise<number> {
-		return a * b;
-	}
+  async multiply(a: number, b: number): Promise<number> {
+    return a * b;
+  }
 
-	async greet(name: string): Promise<string> {
-		return `Hello, ${name}!`;
-	}
+  async greet(name: string): Promise<string> {
+    return `Hello, ${name}!`;
+  }
 
-	async fetchExternalData(url: string): Promise<string> {
-		const response = await fetch(url);
-		return response.text();
-	}
+  async fetchExternalData(url: string): Promise<string> {
+    const response = await fetch(url);
+    return response.text();
+  }
 }
 
-export default new RpcService();
+export default {
+  fetch() {
+    return new Response("ok");
+  },
+};

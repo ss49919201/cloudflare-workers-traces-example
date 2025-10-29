@@ -7,5 +7,12 @@
 		"traces": {
 			"enabled": true
 		}
-	}
+	},
+	"services": [
+		{
+			"binding": "RPC",
+			"service": "rpc-worker",
+			"entrypoint": "RpcService"
+		}
+	]
 }
