@@ -1,7 +1,11 @@
-export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		await fetch('https://ss49919201.work/');
+import { Hono } from 'hono';
+import { Context } from 'hono';
 
-		return new Response('Hello World!');
-	},
-} satisfies ExportedHandler<Env>;
+const app = new Hono<{ Bindings: Env }>();
+
+app.get('/', async (c: Context) => {
+	await fetch('https://ss49919201.work/');
+	return c.text('Hello World!');
+});
+
+export default app;
