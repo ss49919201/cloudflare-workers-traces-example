@@ -1,0 +1,11 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "rpc-worker",
+	"main": "index.ts",
+	"compatibility_date": "2025-10-24",
+	"observability": {
+		"traces": {
+			"enabled": true
+		}
+	}
+}
